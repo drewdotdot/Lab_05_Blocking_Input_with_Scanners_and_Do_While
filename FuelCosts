@@ -1,0 +1,62 @@
+import java.util.Scanner;
+
+public class FuelCosts {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        double gallonsInTank = 0.0;
+        double fuelEfficiency = 0.0;
+        double pricePerGallon = 0.0;
+
+        // Get gallons in tank
+        do {
+            System.out.print("Enter the number of gallons of gas in the tank: ");
+            if (scanner.hasNextDouble()) {
+                gallonsInTank = scanner.nextDouble();
+                if (gallonsInTank <= 0) {
+                    System.out.println("Please enter a value greater than 0.");
+                }
+            } else {
+                System.out.println("Invalid input. Please enter a numeric value.");
+                scanner.next(); // Clear the invalid input
+            }
+        } while (gallonsInTank <= 0);
+
+        // Get fuel efficiency
+        do {
+            System.out.print("Enter the fuel efficiency in miles per gallon: ");
+            if (scanner.hasNextDouble()) {
+                fuelEfficiency = scanner.nextDouble();
+                if (fuelEfficiency <= 0) {
+                    System.out.println("Please enter a value greater than 0.");
+                }
+            } else {
+                System.out.println("Invalid input. Please enter a numeric value.");
+                scanner.next(); // Clear the invalid input
+            }
+        } while (fuelEfficiency <= 0);
+
+        // Get price per gallon
+        do {
+            System.out.print("Enter the price of gas per gallon: ");
+            if (scanner.hasNextDouble()) {
+                pricePerGallon = scanner.nextDouble();
+                if (pricePerGallon <= 0) {
+                    System.out.println("Please enter a value greater than 0.");
+                }
+            } else {
+                System.out.println("Invalid input. Please enter a numeric value.");
+                scanner.next(); // Clear the invalid input
+            }
+        } while (pricePerGallon <= 0);
+
+        // Calculations
+        double costPer100Miles = (100 / fuelEfficiency) * pricePerGallon;
+        double maxDistance = gallonsInTank * fuelEfficiency;
+
+        // Output
+        System.out.printf("Cost to drive 100 miles: $%.2f%n", costPer100Miles);
+        System.out.printf("Distance car can go on a full tank: %.2f miles%n", maxDistance);
+
+        scanner.close();
+    }
+}
